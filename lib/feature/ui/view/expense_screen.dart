@@ -1,6 +1,7 @@
 import 'package:expense_tracker/feature/data/models/expense.dart';
 import 'package:expense_tracker/feature/ui/view/add_expense_dialog.dart';
 import 'package:expense_tracker/feature/ui/view_models/expense_viewmodel.dart';
+import 'package:expense_tracker/feature/utils/constants.dart';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -14,7 +15,10 @@ class ExpenseScreen extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Expense Tracker')),
+      appBar: AppBar(
+        title: const Text(Constants.expenseTracker),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: Consumer<ExpenseViewmodel>(
           builder: (context, viewModel, _) {
@@ -30,7 +34,7 @@ class ExpenseScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(
-                    'Expenses',
+                    Constants.expenses,
                     style: theme.textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.w700,
                     ),
@@ -70,7 +74,7 @@ class ExpenseScreen extends StatelessWidget {
                           },
                           itemCount: viewModel.expenses.length,
                         )
-                      : const Center(child: Text('No Expenses')),
+                      : const Center(child: Text(Constants.noExpenses)),
                 ),
               ],
             );
@@ -113,7 +117,7 @@ class _CategoryTotals extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Category Totals',
+                Constants.categoryTotals,
                 style: theme.textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),

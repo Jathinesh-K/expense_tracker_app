@@ -1,5 +1,6 @@
 import 'package:expense_tracker/feature/data/models/expense.dart';
 import 'package:expense_tracker/feature/ui/view_models/add_expense_view_model.dart';
+import 'package:expense_tracker/feature/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -11,7 +12,7 @@ class AddExpenseDialog extends StatelessWidget {
     return Consumer<AddExpenseViewModel>(
       builder: (context, viewModel, _) {
         return AlertDialog(
-          title: const Text('Add Expense'),
+          title: const Text(Constants.addExpense),
           content: Form(
             key: viewModel.formKey,
             child: Column(
@@ -19,16 +20,20 @@ class AddExpenseDialog extends StatelessWidget {
               children: [
                 TextFormField(
                   controller: viewModel.descriptionController,
-                  decoration: const InputDecoration(labelText: 'Description'),
+                  decoration: const InputDecoration(
+                    labelText: Constants.description,
+                  ),
                   validator: (value) => value == null || value.isEmpty
-                      ? 'Please enter a description'
+                      ? Constants.descriptionValidation
                       : null,
                 ),
                 TextFormField(
                   controller: viewModel.amountController,
-                  decoration: const InputDecoration(labelText: 'Amount'),
+                  decoration: const InputDecoration(
+                    labelText: Constants.amount,
+                  ),
                   validator: (value) => value == null || value.isEmpty
-                      ? 'Please enter an amount'
+                      ? Constants.amountValidation
                       : null,
                 ),
                 DropdownButtonFormField<Category>(
@@ -46,12 +51,16 @@ class AddExpenseDialog extends StatelessWidget {
                       viewModel.setCategory(value);
                     }
                   },
-                  decoration: const InputDecoration(labelText: 'Category'),
+                  decoration: const InputDecoration(
+                    labelText: Constants.category,
+                  ),
                 ),
                 Row(
                   children: [
                     Expanded(
-                      child: Text('Date: ${viewModel.formattedSelectedDate}'),
+                      child: Text(
+                        '${Constants.date}: ${viewModel.formattedSelectedDate}',
+                      ),
                     ),
                     TextButton(
                       onPressed: () async {
@@ -64,7 +73,7 @@ class AddExpenseDialog extends StatelessWidget {
                           viewModel.setDate(date);
                         }
                       },
-                      child: const Text('Select Date'),
+                      child: const Text(Constants.selectDate),
                     ),
                   ],
                 ),
@@ -77,7 +86,7 @@ class AddExpenseDialog extends StatelessWidget {
                 viewModel.reset();
                 Navigator.of(context).pop();
               },
-              child: const Text('Cancel'),
+              child: const Text(Constants.cancel),
             ),
             TextButton(
               onPressed: () {
@@ -87,7 +96,7 @@ class AddExpenseDialog extends StatelessWidget {
                   Navigator.of(context).pop(true);
                 }
               },
-              child: const Text('Add'),
+              child: const Text(Constants.add),
             ),
           ],
         );
