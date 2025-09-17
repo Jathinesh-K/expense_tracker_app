@@ -1,6 +1,7 @@
 import 'package:expense_tracker/feature/ui/view/add_expense_dialog.dart';
 import 'package:expense_tracker/feature/ui/view_models/expense_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class ExpenseScreen extends StatelessWidget {
@@ -25,7 +26,20 @@ class ExpenseScreen extends StatelessWidget {
                         background: Container(color: Colors.red),
                         child: ListTile(
                           title: Text(expense.description),
-                          subtitle: Text(expense.amount.toString()),
+                          subtitle: Text(
+                            '${expense.category.name} - ${DateFormat.yMd().format(expense.dateTime)}',
+                          ),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text('Rs. ${expense.amount.toStringAsFixed(2)}'),
+                              IconButton(
+                                onPressed: () =>
+                                    viewModel.deleteExpense(expense.id),
+                                icon: const Icon(Icons.delete),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },
