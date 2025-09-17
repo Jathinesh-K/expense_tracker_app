@@ -1,3 +1,4 @@
+import 'package:expense_tracker/feature/ui/view/add_expense_dialog.dart';
 import 'package:expense_tracker/feature/ui/view_models/expense_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -42,7 +43,6 @@ class ExpenseScreen extends StatelessWidget {
   }
 
   void _showAddExpenseDialog(BuildContext context) {
-    //TODO: Implement dialog to add transaction.
-    showDialog(context: context, builder: (context) => Container());
+    showDialog(context: context, builder: (context) => AddExpenseDialog());
   }
 }
