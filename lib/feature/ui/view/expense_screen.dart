@@ -1,5 +1,6 @@
 import 'package:expense_tracker/feature/data/models/expense.dart';
 import 'package:expense_tracker/feature/ui/view/add_expense_dialog.dart';
+import 'package:expense_tracker/feature/ui/view/expense_filter_dialog.dart';
 import 'package:expense_tracker/feature/ui/view_models/expense_viewmodel.dart';
 import 'package:expense_tracker/feature/utils/constants.dart';
 
@@ -18,6 +19,12 @@ class ExpenseScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text(Constants.expenseTracker),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () => _showFilterDialog(context),
+            icon: const Icon(Icons.filter_list),
+          ),
+        ],
       ),
       body: SafeArea(
         child: Consumer<ExpenseViewModel>(
@@ -100,6 +107,13 @@ class ExpenseScreen extends StatelessWidget {
     return showDialog<bool>(
       context: context,
       builder: (context) => const AddExpenseDialog(),
+    );
+  }
+
+  void _showFilterDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => const ExpenseFilterDialog(),
     );
   }
 }

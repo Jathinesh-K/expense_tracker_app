@@ -5,6 +5,7 @@ abstract class ExpenseRepository {
   void deleteExpense(String id);
   List<Expense> getExpenses();
   Map<Category, double> getCategoryTotals();
+  List<Expense> filterExpensesByDate({DateTime? from, DateTime? to});
 }
 
 class ExpenseRepositoryImpl implements ExpenseRepository {
@@ -37,5 +38,20 @@ class ExpenseRepositoryImpl implements ExpenseRepository {
     }
 
     return categoryTotals;
+  }
+
+  @override
+  List<Expense> filterExpensesByDate({DateTime? from, DateTime? to}) {
+    return _expenses.where((expense) {
+      if (from != null && to != null) {
+        return expense.dateTime.isAfter(from) && expense.dateTime.isBefore(to);
+      } else if (from != null) {
+        return expense.dateTime.isAfter(from);
+      } else if (to != null) {
+        return expense.dateTime.isBefore(to);
+      } else {
+        return true;
+      }
+    }).toList();
   }
 }

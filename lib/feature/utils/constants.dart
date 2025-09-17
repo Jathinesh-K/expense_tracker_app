@@ -13,4 +13,10 @@ abstract class Constants {
   static const expenses = 'Expenses';
   static const noExpenses = 'No Expenses found';
   static const categoryTotals = 'Category Totals';
+  static const filterExpenses = 'Filter Expenses';
+  static const from = 'From';
+  static const to = 'To';
+  static const select = 'Select';
+  static const clear = 'Clear';
+  static const apply = 'Apply';
 }

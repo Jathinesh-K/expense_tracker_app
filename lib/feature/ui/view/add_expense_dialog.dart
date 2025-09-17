@@ -32,6 +32,7 @@ class AddExpenseDialog extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: Constants.amount,
                   ),
+                  keyboardType: TextInputType.number,
                   validator: (value) => value == null || value.isEmpty
                       ? Constants.amountValidation
                       : null,
