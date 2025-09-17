@@ -10,21 +10,21 @@ class ExpenseViewmodel extends ChangeNotifier {
 
   ExpenseViewmodel({required ExpenseRepository expenseRepository})
     : _repository = expenseRepository {
-    _loadExpenses();
+    loadExpenses();
   }
 
-  void _loadExpenses() {
+  void loadExpenses() {
     _expenses = _repository.getExpenses();
     notifyListeners();
   }
 
   void addExpense(Expense expense) {
     _repository.addExpense(expense);
-    _loadExpenses();
+    loadExpenses();
   }
 
   void deleteExpense(String id) {
     _repository.deleteExpense(id);
-    _loadExpenses();
+    loadExpenses();
   }
 }

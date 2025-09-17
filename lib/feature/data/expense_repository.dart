@@ -7,32 +7,7 @@ abstract class ExpenseRepository {
 }
 
 class ExpenseRepositoryImpl implements ExpenseRepository {
-  final List<Expense> _expenses = [
-    Expense(
-      amount: 100.0,
-      category: Category.food,
-      description: 'Food1',
-      dateTime: DateTime.now(),
-    ),
-    Expense(
-      amount: 100.0,
-      category: Category.food,
-      description: 'Food2',
-      dateTime: DateTime.now(),
-    ),
-    Expense(
-      amount: 100.0,
-      category: Category.food,
-      description: 'Food3',
-      dateTime: DateTime.now(),
-    ),
-    Expense(
-      amount: 100.0,
-      category: Category.food,
-      description: 'Food4',
-      dateTime: DateTime.now(),
-    ),
-  ];
+  final List<Expense> _expenses = [];
 
   @override
   void addExpense(Expense expense) {

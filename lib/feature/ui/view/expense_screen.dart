@@ -9,7 +9,7 @@ class ExpenseScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Expense Tracker')),
+      appBar: AppBar(title: const Text('Expense Tracker')),
       body: SafeArea(
         child: Consumer<ExpenseViewmodel>(
           builder: (context, viewModel, _) {
@@ -31,18 +31,29 @@ class ExpenseScreen extends StatelessWidget {
                     },
                     itemCount: viewModel.expenses.length,
                   )
-                : Center(child: Text('No Expenses'));
+                : const Center(child: Text('No Expenses'));
           },
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _showAddExpenseDialog(context),
-        child: Icon(Icons.add),
+        onPressed: () async {
+          final shouldLoadExpenses = await _showAddExpenseDialog(context);
+          if (context.mounted && (shouldLoadExpenses ?? false)) {
+            Provider.of<ExpenseViewmodel>(
+              context,
+              listen: false,
+            ).loadExpenses();
+          }
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }
 
-  void _showAddExpenseDialog(BuildContext context) {
-    showDialog(context: context, builder: (context) => AddExpenseDialog());
+  Future<bool?> _showAddExpenseDialog(BuildContext context) async {
+    return showDialog<bool>(
+      context: context,
+      builder: (context) => const AddExpenseDialog(),
+    );
   }
 }
