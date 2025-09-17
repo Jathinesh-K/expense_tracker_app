@@ -20,7 +20,7 @@ class ExpenseScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: SafeArea(
-        child: Consumer<ExpenseViewmodel>(
+        child: Consumer<ExpenseViewModel>(
           builder: (context, viewModel, _) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,7 +85,7 @@ class ExpenseScreen extends StatelessWidget {
         onPressed: () async {
           final shouldLoadExpenses = await _showAddExpenseDialog(context);
           if (context.mounted && (shouldLoadExpenses ?? false)) {
-            Provider.of<ExpenseViewmodel>(
+            Provider.of<ExpenseViewModel>(
               context,
               listen: false,
             ).loadExpenses();

@@ -7,7 +7,7 @@ import 'package:provider/single_child_widget.dart';
 List<SingleChildWidget> get providers => [
   Provider(create: (context) => ExpenseRepositoryImpl() as ExpenseRepository),
   ChangeNotifierProvider(
-    create: (context) => ExpenseViewmodel(expenseRepository: context.read()),
+    create: (context) => ExpenseViewModel(expenseRepository: context.read()),
   ),
   ChangeNotifierProvider(
     create: (context) => AddExpenseViewModel(expenseRepository: context.read()),

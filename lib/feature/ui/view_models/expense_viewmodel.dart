@@ -2,7 +2,7 @@ import 'package:expense_tracker/feature/data/expense_repository.dart';
 import 'package:expense_tracker/feature/data/models/expense.dart';
 import 'package:flutter/material.dart';
 
-class ExpenseViewmodel extends ChangeNotifier {
+class ExpenseViewModel extends ChangeNotifier {
   final ExpenseRepository _repository;
 
   List<Expense> _expenses = [];
@@ -11,7 +11,7 @@ class ExpenseViewmodel extends ChangeNotifier {
   Map<Category, double> _categoryTotals = {};
   Map<Category, double> get categoryTotals => _categoryTotals;
 
-  ExpenseViewmodel({required ExpenseRepository expenseRepository})
+  ExpenseViewModel({required ExpenseRepository expenseRepository})
     : _repository = expenseRepository {
     loadExpenses();
   }
