@@ -8,6 +8,9 @@ class ExpenseViewmodel extends ChangeNotifier {
   List<Expense> _expenses = [];
   List<Expense> get expenses => _expenses;
 
+  Map<Category, double> _categoryTotals = {};
+  Map<Category, double> get categoryTotals => _categoryTotals;
+
   ExpenseViewmodel({required ExpenseRepository expenseRepository})
     : _repository = expenseRepository {
     loadExpenses();
@@ -15,6 +18,7 @@ class ExpenseViewmodel extends ChangeNotifier {
 
   void loadExpenses() {
     _expenses = _repository.getExpenses();
+    _categoryTotals = _repository.getCategoryTotals();
     notifyListeners();
   }
 

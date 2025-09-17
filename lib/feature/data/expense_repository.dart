@@ -4,6 +4,7 @@ abstract class ExpenseRepository {
   void addExpense(Expense expense);
   void deleteExpense(String id);
   List<Expense> getExpenses();
+  Map<Category, double> getCategoryTotals();
 }
 
 class ExpenseRepositoryImpl implements ExpenseRepository {
@@ -22,5 +23,19 @@ class ExpenseRepositoryImpl implements ExpenseRepository {
   @override
   List<Expense> getExpenses() {
     return _expenses;
+  }
+
+  @override
+  Map<Category, double> getCategoryTotals() {
+    final Map<Category, double> categoryTotals = {};
+    for (final expense in _expenses) {
+      categoryTotals.update(
+        expense.category,
+        (value) => value + expense.amount,
+        ifAbsent: () => expense.amount,
+      );
+    }
+
+    return categoryTotals;
   }
 }
